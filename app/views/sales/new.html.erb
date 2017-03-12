@@ -96,7 +96,7 @@
         <h4>Add items to receipt</h4>
         <div id="items">
           <% f.fields_for :sale_items do |sale_item| %>
-          <%= render "sale_item_fields", f: sale_item -%>
+          <%= render "sale_item_fields", f: sale_item %>
           <% end -%>
 
           <div class="field">
