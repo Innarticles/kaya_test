@@ -1,0 +1,157 @@
+
+<style>
+.total-section .line-item-sums .total-label {
+  min-height: 42px;
+  display: inline-block;
+  width: 55%;
+  padding: 10px 1%;
+}
+
+.pad5{
+  padding-bottom: 5px;
+}
+
+
+.total-section .line-item-sums .total-amount {
+  min-height: 42px;
+  float: right;
+  padding: 10px 1.5%;
+  width: 45%;
+  margin-left: -1%;
+  text-align: right;
+  line-height: 22px;
+}
+</style>
+
+
+<div class="app-content-body ">
+
+
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">New Sales Order</h1>
+  </div>
+  <div class="wrapper-md" ng-controller="FormDemoCtrl">
+
+
+    <div class="panel panel-default">
+    <!-- <div class="panel-heading font-bold">
+      Form elements
+    </div> -->
+
+    <div class="panel-body">
+      <%= form_for @sale , :html => {:class => 'form-horizontal', 'data-bar' => 'baz'}  do |f| %>
+      <% if @sale.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+        <ul>
+          <% @sale.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="">
+        <label class="col-sm-2 control-label">Customer Name</label>
+        <div class="col-sm-4">
+          <%= f.hidden_field :customer_id, :id => "my_customer_id" %>
+         <%=  f.autocomplete_field :customer_id, autocomplete_customer_name_sales_path, :update_elements => {:id => '#id_element', :phone => '#customer_phone'}, 'data-noMatchesLabel' => 'no customers found', :id_element => '#my_customer_id', :class => 'form-control' %>
+
+         <span class="help-block m-b-none">Please start typing in the name of the customer.</span>
+         <%= f.hidden_field :outlet_id, :value => current_outlet.id %>
+         <%= f.hidden_field :user_id, :value => current_user.id %>
+         <%= f.hidden_field :payment_type, :value => "Cash" %>
+       </div>
+     </div>
+     <div class="">
+      <label class="col-sm-2 control-label">Customer Phone</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="customer_phone">
+        <span class="help-block m-b-none"></span>
+      </div>
+    </div>
+
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="">
+      <label class="col-sm-2 control-label" for="input-id-1">Sales #Order</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="input-id-1">
+      </div>
+    </div>
+    <div class="">
+      <label class="col-sm-2 control-label">Sales Order Date</label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+
+
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+
+
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <h4>Add items to receipt</h4>
+        <div id="items">
+          <% f.fields_for :sale_items do |sale_item| %>
+          <%= render "sale_item_fields", f: sale_item -%>
+          <% end -%>
+
+          <div class="field">
+            <%= link_to_add_association '+ Add another line', f, :sale_items %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <div class="form-group">
+      <div class="col-md-5">
+      </div>
+      <div class="col-md-7 invoice-discount total-section">
+
+        <div class="line-item-sums">
+          <div class="total-label">
+            Sub Total
+            <!---->
+          </div>
+          <div class="total-amount">0.00 </div>
+        </div>
+
+        <div class="line-item-sums">
+          <div class="total-label total-value">
+            <label>Total</label> ( NGN ) 
+          </div>
+          <div class="total-value total-amount text-right">0.00</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="line line-dashed b-b line-lg pull-in"></div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Notes</label>
+      <div class="col-sm-10">
+        <%= f.text_area :notes, class: "btn-toolbar m-b-sm btn-editor form-control" %>
+      </div>
+
+      <div class="line line-dashed b-b line-lg pull-in"></div>
+      <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-2">
+          <button type="submit" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+</div>

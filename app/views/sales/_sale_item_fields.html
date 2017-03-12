@@ -1,0 +1,28 @@
+
+
+
+<div class="nested-fields" id="items2">
+  <% @it= Time.now.to_i %>
+    <%= @it %>
+  <div class="col-sm-5 pad5">
+    
+    <%= f.text_field :product_id, :id => "my_product_id#{@it}" %>
+    <%=  f.autocomplete_field :product_id, autocomplete_product_name_sale_items_path, :update_elements => {:id => '#id_element', :selling_price => "#my_product_price"}, :id_element => "#my_product_id#{@it}",'data-noMatchesLabel' => 'no customers found', :class => 'form-control' %>
+  </div>
+  <div class="col-sm-2 pad5">
+    <%= f.text_field :price, :class => 'item_price form-control ',  placeholder: "enter price", :id => "my_product_price" %> 
+  </div>
+  <div class="col-sm-2 pad5">
+    <%= f.text_field :quantity, :class => 'item_quantity form-control ', placeholder: "enter quantity" %> 
+  </div>
+  <div class="col-sm-2 pad5">
+   <input type="text" class="form-control item_amount" value="0.0">
+ </div>
+ <div class="col-sm-1 pad5" align="center">
+  <%= link_to_remove_association "X", f %> 
+</div>
+
+</div>
+
+<div class="line line-dashed b-b line-lg pull-in"></div>
+

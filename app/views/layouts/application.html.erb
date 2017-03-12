@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="utf-8" />
+  <title>Kaya | Dashboard</title>
+  <!-- <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+   <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css' %>
+  <link rel="stylesheet" href="/assets/animate.css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/assets/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %> 
+</head>
+
+
+
+
+
+
+<body>
+    <div class="app app-header-fixed ">
+     <!-- header -->
+     <%= render partial: "layouts/shared/header" %>
+     <!-- / header -->
+
+     <!-- aside -->
+     <%= render partial: "layouts/shared/aside" %>
+     <!-- / aside -->
+
+
+
+     <!-- content -->
+     <div id="content" class="app-content" role="main">
+         <%= yield %>
+     </div>
+     <!-- aside -->
+     <%= render partial: "layouts/shared/footer" %>
+     <!-- / aside -->
+
+ </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
